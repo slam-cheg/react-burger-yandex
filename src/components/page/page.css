@@ -1,0 +1,9 @@
+.page {
+  box-sizing: border-box;
+  overflow: hidden;
+  max-width: 1240px;
+  margin: 0 auto;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
