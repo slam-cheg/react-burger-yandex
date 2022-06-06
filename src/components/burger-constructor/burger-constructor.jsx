@@ -1,8 +1,8 @@
 import React from "react";
-import "./burger-ingredients.css";
-import { Tab, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import "./burger-constructor.css";
+import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
-export default class BurgerIngredients extends React.Component {
+export default class BurgerConstructor extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -219,67 +219,20 @@ export default class BurgerIngredients extends React.Component {
                 __v: 0,
             },
         ];
-        const buns = [];
-        const sauces = [];
-        ingredients.forEach((item) => {
-            if (item.type === "bun") {
-                buns.push(item);
-            }
-            if (item.type === "sauce") {
-                sauces.push(item);
-            }
-        });
-        return (
-            <div className="burger-ingredients pt-10 mb-10">
-                <h1 className="burger-ingredients__title mb-5 text text_type_main-large">Соберите бургер</h1>
-                <IngredientsTabs />
-                <div className="burger-ingredients__wrapper">
-                    <h2 className="burger-ingredients__title mb-6 text text_type_main-medium">Булки</h2>
-                    <IngredientCards arr={buns} />
-                    <h2 className="burger-ingredients__title mb-6 text text_type_main-medium">Соусы</h2>
-                    <IngredientCards arr={sauces} />
+        const list = ingredients.map((ingredient, index) => (
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center" }} key={index}>
+                <div className="burger-constructor__ingredient-wrapper pl-8 mb-4">
+                    <div className="burger-constructor__drag-ico">
+                        <DragIcon type="primary" />
+                    </div>
+                    <ConstructorElement text={ingredient.name} price={ingredient.price} thumbnail={ingredient.image_mobile} />
                 </div>
             </div>
-        );
-    }
-}
-
-const IngredientsTabs = () => {
-    const [current, setCurrent] = React.useState("one");
-    return (
-        <div style={{ display: "flex", boxSizing: "border-box", overflow: "hidden" }} className="mb-10 tabs">
-            <Tab value="one" active={current === "one"} onClick={setCurrent}>
-                Булки
-            </Tab>
-            <Tab value="two" active={current === "two"} onClick={setCurrent}>
-                Соусы
-            </Tab>
-            <Tab value="three" active={current === "three"} onClick={setCurrent}>
-                Начинки
-            </Tab>
-        </div>
-    );
-};
-
-class IngredientCards extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        const list = this.props.arr.map((ingredient, index) => (
-            <React.Fragment key={index}>
-                <li className="ingredient-card mb-10">
-                    <img src={ingredient.image} alt="" className="ingredient-card__img ml-4 mr-4" />
-                    <div className="ingredient-card__price-wrapper mt-1 mb-1">
-                        <p className="ingredient-card__price text text_type_digits-default pr-2">{ingredient.price}</p>
-                        <div className="ingredient-card__currency">
-                            <CurrencyIcon type="primary" />
-                        </div>
-                    </div>
-                    <p className="ingredient-card__title text text_type_main-default">{ingredient.name}</p>
-                </li>
-            </React.Fragment>
         ));
-        return <ul className="burger-ingredients__cards ml-4 mr-2 mt-6 mb-6">{list}</ul>;
+        return (
+            <div className="burger-constructor pt-25 mb-10">
+                <div className="burger-constructor__ingredients ml-4">{list}</div>
+            </div>
+        );
     }
 }

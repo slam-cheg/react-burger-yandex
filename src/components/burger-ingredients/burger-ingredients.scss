@@ -1,13 +1,19 @@
 .burger-ingredients {
-    height: 912px;
+    height: calc(100vh - 88px - 40px - 40px);
+    overflow: hidden;
     width: 600px;
     border: 2px solid #4c4cff;
     border-top: none;
+    box-sizing: border-box;
 }
 
 .burger-ingredients__title {
-    border-top: 1px dashed #4c4cff;
     border-bottom: 1px dashed #4c4cff;
+    border-top: 1px dashed #4c4cff;
+
+    &:first-of-type {
+        border-top: unset;
+    }
 }
 
 .tabs {
@@ -17,7 +23,10 @@
 }
 
 .burger-ingredients__wrapper {
-    overflow: scroll;
+    overflow-y: scroll;
+    height: 81%;
+    position: relative;
+    border-top: 1px dashed #4c4cff;
 
     &::-webkit-scrollbar {
         width: 8px;
