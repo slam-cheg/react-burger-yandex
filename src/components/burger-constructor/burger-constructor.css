@@ -10,7 +10,7 @@
 .burger-constructor__ingredients {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   overflow-y: scroll;
   height: 572px;
   position: relative;
@@ -35,6 +35,9 @@
   align-items: center;
   position: relative;
 }
+.burger-constructor__ingredient-wrapper:only-child {
+  border: 1px dashed #4c4cff;
+}
 
 .burger-constructor__drag-ico {
   position: absolute;
@@ -45,4 +48,7 @@
   border-left: unset;
   cursor: -webkit-grab;
   cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
