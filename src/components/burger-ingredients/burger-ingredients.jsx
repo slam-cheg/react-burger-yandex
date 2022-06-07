@@ -221,12 +221,16 @@ export default class BurgerIngredients extends React.Component {
         ];
         const buns = [];
         const sauces = [];
+        const main = [];
         ingredients.forEach((item) => {
             if (item.type === "bun") {
                 buns.push(item);
             }
             if (item.type === "sauce") {
                 sauces.push(item);
+            }
+            if (item.type === "main") {
+                main.push(item);
             }
         });
         return (
@@ -238,6 +242,8 @@ export default class BurgerIngredients extends React.Component {
                     <IngredientCards arr={buns} />
                     <h2 className="burger-ingredients__title mb-6 text text_type_main-medium">Соусы</h2>
                     <IngredientCards arr={sauces} />
+                    <h2 className="burger-ingredients__title mb-6 text text_type_main-medium">Начинки</h2>
+                    <IngredientCards arr={main} />
                 </div>
             </div>
         );

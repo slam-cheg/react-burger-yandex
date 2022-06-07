@@ -5,6 +5,9 @@
   border: 2px solid #4c4cff;
   border-top: none;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .burger-constructor__ingredients {
@@ -12,12 +15,12 @@
   flex-direction: column;
   align-items: flex-start;
   overflow-y: scroll;
-  height: 572px;
+  max-height: 474px;
   position: relative;
 }
 .burger-constructor__ingredients::-webkit-scrollbar {
   width: 8px;
-  height: 664px;
+  height: 464px;
   background: #2f2f37;
   border-left: 1px dashed #4c4cff;
   border-top: 1px dashed #4c4cff;
@@ -35,9 +38,6 @@
   align-items: center;
   position: relative;
 }
-.burger-constructor__ingredient-wrapper:only-child {
-  border: 1px dashed #4c4cff;
-}
 
 .burger-constructor__drag-ico {
   position: absolute;
@@ -51,4 +51,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.burger-constructor__order {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.burger-constructor__total {
+  border: 1px dashed #4c4cff;
+  padding: 14px 0 14px 0;
+}
+
+.constructor-element__image,
+.constructor-element__text,
+.burger-constructor__button-wrapper {
+  border: 1px dashed #4c4cff;
+}
+
+.constructor-element__price {
+  border: 1px dashed #4c4cff;
+}
+.constructor-element__price svg {
+  border-left: 1px dashed #4c4cff;
+}
+
+.constructor-element__action {
+  border: 1px dashed #4c4cff;
+  padding: 0;
 }
