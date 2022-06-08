@@ -234,7 +234,7 @@ export default class BurgerIngredients extends React.Component {
             }
         });
         return (
-            <div className="burger-ingredients pt-10 mb-10">
+            <section className="burger-ingredients pt-10 mb-10">
                 <h1 className="burger-ingredients__title mb-5 text text_type_main-large">Соберите бургер</h1>
                 <IngredientsTabs />
                 <div className="burger-ingredients__wrapper">
@@ -245,7 +245,7 @@ export default class BurgerIngredients extends React.Component {
                     <h2 className="burger-ingredients__title mb-6 text text_type_main-medium">Начинки</h2>
                     <IngredientCards arr={main} />
                 </div>
-            </div>
+            </section>
         );
     }
 }

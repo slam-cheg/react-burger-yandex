@@ -242,7 +242,7 @@ export default class BurgerConstructor extends React.Component {
         ));
         return (
             <>
-                <div className="burger-constructor pt-25 mb-10">
+                <section className="burger-constructor pt-25 mb-10">
                     <div className="burger-constructor__ingredients">
                         <div className="ml-4" style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", width: "568px", boxSizing: "border-box" }}>
                             <div className="burger-constructor__ingredient-wrapper pl-8 mb-4">
@@ -252,7 +252,9 @@ export default class BurgerConstructor extends React.Component {
                                 <ConstructorElement type="top" isLocked={true} text={`${topIngredient.name} (верх)`} price={topIngredient.price} thumbnail={topIngredient.image_mobile} />
                             </div>
                         </div>
-                        {midList}
+
+                        <div className="burger-constructor__ingredients-middle mb-4">{midList}</div>
+
                         <div className="ml-4" style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", width: "568px", boxSizing: "border-box" }}>
                             <div className="burger-constructor__ingredient-wrapper pl-8">
                                 <div className="burger-constructor__drag-ico">
@@ -273,7 +275,7 @@ export default class BurgerConstructor extends React.Component {
                             </Button>
                         </div>
                     </div>
-                </div>
+                </section>
             </>
         );
     }
