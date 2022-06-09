@@ -1,12 +1,13 @@
 import React from "react";
-import "./burger-ingredients.css";
+import PropTypes from "prop-types";
+import styles from "./burger-ingredients.module.css";
 import { Tab, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ingredients } from "../../utils/data";
 
-export const BurgerIngredients = () => {
+export const BurgerIngredients = (data) => {
     const buns = [];
     const sauces = [];
-    const main = [];
+    const mainIngr = [];
     ingredients.forEach((item) => {
         if (item.type === "bun") {
             buns.push(item);
@@ -15,29 +16,33 @@ export const BurgerIngredients = () => {
             sauces.push(item);
         }
         if (item.type === "main") {
-            main.push(item);
+            mainIngr.push(item);
         }
     });
     return (
-        <section className="burger-ingredients pt-10 mb-10">
-            <h1 className="burger-ingredients__title mb-5 text text_type_main-large">Соберите бургер</h1>
+        <section className={`${styles.burgerIngredients} pt-10 mb-10`}>
+            <h1 className={`${styles.title} mb-5 text text_type_main-large`}>Соберите бургер</h1>
             <IngredientsTabs />
-            <div className="burger-ingredients__wrapper">
-                <h2 className="burger-ingredients__title mb-6 text text_type_main-medium">Булки</h2>
+            <div className={`${styles.wrapper}`}>
+                <h2 className={`${styles.title} mb-6 text text_type_main-medium`}>Булки</h2>
                 <IngredientCards arr={buns} />
-                <h2 className="burger-ingredients__title mb-6 text text_type_main-medium">Соусы</h2>
+                <h2 className={`${styles.title} mb-6 text text_type_main-medium`}>Соусы</h2>
                 <IngredientCards arr={sauces} />
-                <h2 className="burger-ingredients__title mb-6 text text_type_main-medium">Начинки</h2>
-                <IngredientCards arr={main} />
+                <h2 className={`${styles.title} mb-6 text text_type_main-medium`}>Начинки</h2>
+                <IngredientCards arr={mainIngr} />
             </div>
         </section>
     );
 };
 
+BurgerIngredients.propTypes = {
+    data: PropTypes.array.isRequired,
+};
+
 const IngredientsTabs = () => {
     const [current, setCurrent] = React.useState("one");
     return (
-        <div style={{ display: "flex", boxSizing: "border-box", overflow: "hidden" }} className="mb-10 tabs">
+        <div className={`${styles.tabs} mb-10`}>
             <Tab value="one" active={current === "one"} onClick={setCurrent}>
                 Булки
             </Tab>
@@ -54,17 +59,17 @@ const IngredientsTabs = () => {
 const IngredientCards = (props) => {
     const list = props.arr.map((ingredient, index) => (
         <React.Fragment key={index}>
-            <li className="ingredient-card mb-10">
+            <li className={`${styles.ingredientCard} mb-10`}>
                 <img src={ingredient.image} alt="" className="ingredient-card__img ml-4 mr-4" />
-                <div className="ingredient-card__price-wrapper mt-1 mb-1">
-                    <p className="ingredient-card__price text text_type_digits-default pr-2">{ingredient.price}</p>
-                    <div className="ingredient-card__currency">
+                <div className={`${styles.priceWrapper} mt-1 mb-1`}>
+                    <p className={`${styles.price} text text_type_digits-default pr-2`}>{ingredient.price}</p>
+                    <div className={`${styles.currency}`}>
                         <CurrencyIcon type="primary" />
                     </div>
                 </div>
-                <p className="ingredient-card__title text text_type_main-default">{ingredient.name}</p>
+                <p className={`${styles.cardTitle} text text_type_main-default`}>{ingredient.name}</p>
             </li>
         </React.Fragment>
     ));
-    return <ul className="burger-ingredients__cards ml-4 mr-2 mt-6 mb-6">{list}</ul>;
+    return <ul className={`${styles.cards} ml-4 mr-2 mt-6 mb-6`}>{list}</ul>;
 };

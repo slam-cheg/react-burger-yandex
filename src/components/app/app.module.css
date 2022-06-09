@@ -1,4 +1,9 @@
-.page {
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
   box-sizing: border-box;
   overflow: hidden;
   max-width: 1240px;
@@ -8,4 +13,11 @@
   grid-template-columns: repeat(2, 1fr);
   -moz-column-gap: 40px;
        column-gap: 40px;
+}
+
+.appContainer {
+  background: #131316;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
 }
