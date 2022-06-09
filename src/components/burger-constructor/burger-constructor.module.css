@@ -1,4 +1,4 @@
-.burger-constructor {
+.burgerConstructor {
   height: calc(100vh - 88px - 40px - 40px);
   overflow: hidden;
   width: 600px;
@@ -10,7 +10,7 @@
   justify-content: space-between;
 }
 
-.burger-constructor__ingredients {
+.ingredients {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -18,12 +18,12 @@
   position: relative;
 }
 
-.burger-constructor__ingredients-middle {
+.ingredientsMiddle {
   overflow-y: scroll;
   height: 282px;
   width: 100%;
 }
-.burger-constructor__ingredients-middle::-webkit-scrollbar {
+.ingredientsMiddle::-webkit-scrollbar {
   width: 8px;
   height: 464px;
   background: #2f2f37;
@@ -31,12 +31,12 @@
   border-top: 1px dashed #4c4cff;
   border-bottom: 1px dashed #4c4cff;
 }
-.burger-constructor__ingredients-middle::-webkit-scrollbar-thumb {
+.ingredientsMiddle::-webkit-scrollbar-thumb {
   background: #8585ad;
   border: 3px solid #8585ad;
 }
 
-.burger-constructor__ingredient-wrapper {
+.ingredientWrapper {
   width: calc(100% - 32px);
   border: 1px dashed #4c4cff;
   display: flex;
@@ -44,7 +44,7 @@
   position: relative;
 }
 
-.burger-constructor__drag-ico {
+.dragIco {
   position: absolute;
   box-sizing: border-box;
   left: 0;
@@ -58,31 +58,31 @@
   justify-content: center;
 }
 
-.burger-constructor__order {
+.order {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
-.burger-constructor__total {
+.total {
   border: 1px dashed #4c4cff;
   padding: 14px 0 14px 0;
 }
 
-.constructor-element__image,
-.constructor-element__text,
-.burger-constructor__button-wrapper {
+.image,
+.text,
+.button-wrapper {
   border: 1px dashed #4c4cff;
 }
 
-.constructor-element__price {
+.price {
   border: 1px dashed #4c4cff;
 }
-.constructor-element__price svg {
+.price svg {
   border-left: 1px dashed #4c4cff;
 }
 
-.constructor-element__action {
+.action {
   border: 1px dashed #4c4cff;
   padding: 0;
 }
