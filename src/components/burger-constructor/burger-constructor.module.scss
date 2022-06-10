@@ -2,12 +2,20 @@
     height: calc(100% - 88px - 40px - 40px);
     overflow: hidden;
     width: 600px;
-    border: 2px solid #4c4cff;
     border-top: none;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.ingredient {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 568px;
+    box-sizing: border-box;
 }
 
 .ingredients {
@@ -16,32 +24,35 @@
     align-items: flex-start;
     max-height: calc(100% - 100px);
     position: relative;
+    list-style: none;
 }
 
 .ingredientsMiddle {
     overflow-y: scroll;
-    max-height: calc(100% - 289px);
+    max-height: calc(100% - 297px);
     min-height: 82px;
     width: 100%;
+    list-style: none;
+
+    &:last-child {
+        .ingredientWrapper {
+            margin-bottom: 0 !important;
+        }
+    }
 
     &::-webkit-scrollbar {
         width: 8px;
         height: 464px;
         background: #2f2f37;
-        border-left: 1px dashed #4c4cff;
-        border-top: 1px dashed #4c4cff;
-        border-bottom: 1px dashed #4c4cff;
     }
 
     &::-webkit-scrollbar-thumb {
         background: #8585ad;
-        border: 3px solid #8585ad;
     }
 }
 
 .ingredientWrapper {
     width: calc(100% - 32px);
-    border: 1px dashed #4c4cff;
     display: flex;
     align-items: center;
     position: relative;
@@ -52,7 +63,6 @@
     box-sizing: border-box;
     left: 0;
     top: calc(50% - 14.5px);
-    border: 1px dashed #4c4cff;
     border-left: unset;
     cursor: grab;
     display: flex;
@@ -67,24 +77,9 @@
 }
 
 .total {
-    border: 1px dashed #4c4cff;
     padding: 14px 0 14px 0;
 }
 
-.image,
-.text,
-.button-wrapper {
-    border: 1px dashed #4c4cff;
-}
-.price {
-    border: 1px dashed #4c4cff;
-
-    svg {
-        border-left: 1px dashed #4c4cff;
-    }
-}
-
 .action {
-    border: 1px dashed #4c4cff;
     padding: 0;
 }

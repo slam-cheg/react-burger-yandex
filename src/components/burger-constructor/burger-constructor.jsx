@@ -1,54 +1,52 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./burger-constructor.module.css";
+import styles from "./burger-constructor.module.scss";
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { ingredients } from "../../utils/data";
 
-export const BurgerConstructor = (datd) => {
-    const topIngredient = ingredients[0];
-    const midIngredients = [];
-    const lastIngredient = ingredients[ingredients.length - 1];
+export const BurgerConstructor = (data) => {
+    const buns = [];  // incoming buns
+    const midIngredients = []; // incoming main and sauces
+
     ingredients.forEach((item) => {
-        if (topIngredient.name !== item.name) {
-            if (lastIngredient.name !== item.name) {
-                midIngredients.push(item);
-            }
+        if (item.type !== "bun") {
+            midIngredients.push(item);
+        } else {
+            buns.push(item);
         }
     });
-    const midList = midIngredients.map((ingredient, index) => (
-        <div className="ml-4" style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", width: "568px", boxSizing: "border-box" }} key={index}>
+
+    const topBottomIngredient = buns[0];
+
+    const midList = midIngredients.map((ingredient, _id) => (
+        <li className={`${styles.ingredient} ml-4`} key={_id}>
             <div className={`${styles.ingredientWrapper} pl-8 mb-4`}>
                 <div className={`${styles.dragIco}`}>
                     <DragIcon type="primary" />
                 </div>
                 <ConstructorElement text={ingredient.name} price={ingredient.price} thumbnail={ingredient.image_mobile} />
             </div>
-        </div>
+        </li>
     ));
+
     return (
         <>
             <section className={`${styles.burgerConstructor} pt-25 mb-10`}>
-                <div className={`${styles.ingredients}`}>
-                    <div className="ml-4" style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", width: "568px", boxSizing: "border-box" }}>
+                <ul className={`${styles.ingredients}`}>
+                    <li className={`${styles.ingredient} ml-4`}>
                         <div className={`${styles.ingredientWrapper} pl-8 mb-4`}>
-                            <div className={`${styles.dragIco}`}>
-                                <DragIcon type="primary" />
-                            </div>
-                            <ConstructorElement type="top" isLocked={true} text={`${topIngredient.name} (верх)`} price={topIngredient.price} thumbnail={topIngredient.image_mobile} />
+                            <ConstructorElement type="top" isLocked={true} text={`${topBottomIngredient.name} (верх)`} price={topBottomIngredient.price} thumbnail={topBottomIngredient.image_mobile} />
                         </div>
-                    </div>
+                    </li>
 
                     <div className={`${styles.ingredientsMiddle} mb-4`}>{midList}</div>
 
-                    <div className="ml-4" style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", width: "568px", boxSizing: "border-box" }}>
+                    <div className={`${styles.ingredient} ml-4`}>
                         <div className={`${styles.ingredientWrapper} pl-8`}>
-                            <div className={`${styles.dragIco}`}>
-                                <DragIcon type="primary" />
-                            </div>
-                            <ConstructorElement type="bottom" isLocked={true} text={`${lastIngredient.name} (низ)`} price={lastIngredient.price} thumbnail={lastIngredient.image_mobile} />
+                            <ConstructorElement type="bottom" isLocked={true} text={`${topBottomIngredient.name} (низ)`} price={topBottomIngredient.price} thumbnail={topBottomIngredient.image_mobile} />
                         </div>
                     </div>
-                </div>
+                </ul>
 
                 <div className={`${styles.order} mb-10 ml-4 mr-4`}>
                     <div className={`${styles.total} mr-10`}>
