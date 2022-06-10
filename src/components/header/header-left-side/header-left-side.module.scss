@@ -1,0 +1,10 @@
+.left {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link {
+    composes: link from "../header.module.scss"
+}
