@@ -1,0 +1,87 @@
+.burgerIngredients {
+  height: calc(100vh - 88px - 40px - 40px);
+  overflow: hidden;
+  width: 600px;
+  border: 2px solid #4c4cff;
+  border-top: none;
+  box-sizing: border-box;
+}
+
+.title {
+  border-bottom: 1px dashed #4c4cff;
+  border-top: 1px dashed #4c4cff;
+}
+.title:first-of-type {
+  border-top: unset;
+}
+
+.tabs {
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.tabs div {
+  border: 1px dashed #4c4cff;
+}
+
+.wrapper {
+  overflow-y: scroll;
+  height: calc(100% - 88px - 40px - 31px);
+  width: 100%;
+  position: relative;
+  border-top: 1px dashed #4c4cff;
+}
+.wrapper::-webkit-scrollbar {
+  width: 8px;
+  height: 664px;
+  background: #2f2f37;
+  border-left: 1px dashed #4c4cff;
+  border-top: 1px dashed #4c4cff;
+  border-bottom: 1px dashed #4c4cff;
+}
+.wrapper::-webkit-scrollbar-thumb {
+  background: #8585ad;
+  border: 3px solid #8585ad;
+}
+
+.cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  -moz-column-gap: 24px;
+       column-gap: 24px;
+}
+
+.ingredientCard {
+  max-width: 272px;
+  border: 1px dashed #4c4cff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.priceWrapper {
+  display: flex;
+}
+
+.price {
+  border: 1px dashed #4c4cff;
+  height: 24px;
+}
+
+.currency {
+  border: 1px dashed #4c4cff;
+  height: 24px;
+}
+
+.img {
+  border: 1px dashed #4c4cff;
+}
+
+.cardTitle {
+  border-top: 1px dashed #4c4cff;
+  height: 48px;
+  width: 100%;
+  text-align: center;
+}
