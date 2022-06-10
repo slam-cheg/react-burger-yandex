@@ -210,3 +210,24 @@ export const ingredients = [
         __v: 0,
     },
 ];
+
+const config = {
+    baseUrl: "https://norma.nomoreparties.space/api/ingredients",
+    headers: {
+        "Content-Type": "application/json",
+    },
+};
+
+export const initialData = () => {
+    fetch(config.baseUrl, {
+        method: "GET",
+        headers: config.headers,
+    }).then(checkResponse);
+};
+
+const checkResponse = (res) => {
+    if (res.ok) {
+        return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+};

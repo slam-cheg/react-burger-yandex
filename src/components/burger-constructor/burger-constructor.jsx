@@ -5,7 +5,7 @@ import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktiku
 import { ingredients } from "../../utils/data";
 
 export const BurgerConstructor = (data) => {
-    const buns = [];  // incoming buns
+    const buns = []; // incoming buns
     const midIngredients = []; // incoming main and sauces
 
     ingredients.forEach((item) => {
