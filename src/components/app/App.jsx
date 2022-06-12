@@ -39,10 +39,6 @@ function App() {
         initialData();
     }, []);
 
-    // useEffect(() => {
-    //     console.log(ingredients);
-    // });
-
     return (
         <div className={`${styles.appContainer}`}>
             <AppHeader />

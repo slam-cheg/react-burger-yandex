@@ -4,6 +4,7 @@ import styles from "./burger-ingredients.module.scss";
 import { IngredientCards } from "./ingredients-cards/ingredients-cards";
 // import { ingredients } from "../../utils/data";
 import { IngredientsTabs } from "./ingredients-tabs/ingredients-tabs";
+import { Modal } from "../modal/modal";
 
 export const BurgerIngredients = ({ ingredients }) => {
     const buns = [];
@@ -33,6 +34,7 @@ export const BurgerIngredients = ({ ingredients }) => {
                 <h2 className={`mb-6 text text_type_main-medium`}>Начинки</h2>
                 <IngredientCards arr={mainIngr} />
             </div>
+            <Modal />
         </section>
     );
 };

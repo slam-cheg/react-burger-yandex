@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./burger-constructor.module.scss";
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Modal } from "../modal/modal";
 
 export const BurgerConstructor = ({ ingredients }) => {
     const buns = []; // incoming buns
@@ -58,6 +59,7 @@ export const BurgerConstructor = ({ ingredients }) => {
                         </Button>
                     </div>
                 </div>
+                <Modal />
             </section>
         </>
     );
