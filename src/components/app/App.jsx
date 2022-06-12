@@ -3,10 +3,9 @@ import styles from "./app.module.css";
 import { AppHeader } from "../header/header";
 import { BurgerIngredients } from "../burger-ingredients/burger-ingredients";
 import { BurgerConstructor } from "../burger-constructor/burger-constructor";
-import { initialData } from "../../utils/data";
-// import { initialData } from "../../utils/data";
 
 function App() {
+    const [ingredients, setIngredients] = useState([]);
     useEffect(() => {
         const config = {
             baseUrl: "https://norma.nomoreparties.space/api/ingredients",
@@ -22,9 +21,8 @@ function App() {
             })
                 .then(checkResponse)
                 .then((res) => {
-                    const data = res.data;
-                    console.log(data);
-                    return data;
+                    const ingredientsData = res.data;
+                    setIngredients(ingredientsData);
                 })
                 .catch((err) => {
                     console.error(err);
@@ -39,19 +37,18 @@ function App() {
         };
 
         initialData();
-    });
+    }, []);
 
-    useState(() => {
-        initialData();
-        // console.log(data);
-    });
+    // useEffect(() => {
+    //     console.log(ingredients);
+    // });
 
     return (
         <div className={`${styles.appContainer}`}>
             <AppHeader />
             <main className={`${styles.main}`}>
-                <BurgerIngredients />
-                <BurgerConstructor />
+                <BurgerIngredients ingredients={ingredients} />
+                <BurgerConstructor ingredients={ingredients} />
             </main>
         </div>
     );

@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./burger-constructor.module.scss";
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import { ingredients } from "../../utils/data";
 
-export const BurgerConstructor = (data) => {
+export const BurgerConstructor = ({ ingredients }) => {
     const buns = []; // incoming buns
     const midIngredients = []; // incoming main and sauces
 
@@ -24,7 +23,7 @@ export const BurgerConstructor = (data) => {
                 <div className={`${styles.dragIco}`}>
                     <DragIcon type="primary" />
                 </div>
-                <ConstructorElement text={ingredient.name} price={ingredient.price} thumbnail={ingredient.image_mobile} />
+                <ConstructorElement text={ingredient?.name} price={ingredient.price} thumbnail={ingredient.image_mobile} />
             </div>
         </li>
     ));
@@ -35,7 +34,7 @@ export const BurgerConstructor = (data) => {
                 <ul className={`${styles.ingredients}`}>
                     <li className={`${styles.ingredient} ml-4`}>
                         <div className={`${styles.ingredientWrapper} pl-8 mb-4`}>
-                            <ConstructorElement type="top" isLocked={true} text={`${topBottomIngredient.name} (верх)`} price={topBottomIngredient.price} thumbnail={topBottomIngredient.image_mobile} />
+                            <ConstructorElement type="top" isLocked={true} text={`${topBottomIngredient?.name} (верх)`} price={topBottomIngredient?.price} thumbnail={topBottomIngredient?.image_mobile} />
                         </div>
                     </li>
 
@@ -43,7 +42,7 @@ export const BurgerConstructor = (data) => {
 
                     <div className={`${styles.ingredient} ml-4`}>
                         <div className={`${styles.ingredientWrapper} pl-8`}>
-                            <ConstructorElement type="bottom" isLocked={true} text={`${topBottomIngredient.name} (низ)`} price={topBottomIngredient.price} thumbnail={topBottomIngredient.image_mobile} />
+                            <ConstructorElement type="bottom" isLocked={true} text={`${topBottomIngredient?.name} (низ)`} price={topBottomIngredient?.price} thumbnail={topBottomIngredient?.image_mobile} />
                         </div>
                     </div>
                 </ul>
@@ -65,12 +64,13 @@ export const BurgerConstructor = (data) => {
 };
 
 BurgerConstructor.propTypes = {
-    data: PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        image_mobile: PropTypes.string.isRequired,
-    }),
+    ingredients: PropTypes.arrayOf(
+        PropTypes.shape({
+            _id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+            image: PropTypes.string.isRequired,
+        })
+    ),
 };

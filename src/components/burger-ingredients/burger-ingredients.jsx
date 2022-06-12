@@ -2,14 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./burger-ingredients.module.scss";
 import { IngredientCards } from "./ingredients-cards/ingredients-cards";
-import { ingredients } from "../../utils/data";
+// import { ingredients } from "../../utils/data";
 import { IngredientsTabs } from "./ingredients-tabs/ingredients-tabs";
 
-export const BurgerIngredients = (data) => {
+export const BurgerIngredients = ({ ingredients }) => {
     const buns = [];
     const sauces = [];
     const mainIngr = [];
-    ingredients.forEach((item) => { // ingredients >>> data
+    ingredients.forEach((item) => {
+        // ingredients >>> data
         if (item.type === "bun") {
             buns.push(item);
         }
@@ -37,5 +38,5 @@ export const BurgerIngredients = (data) => {
 };
 
 BurgerIngredients.propTypes = {
-    data: PropTypes.array.isRequired,
+    ingredients: PropTypes.array.isRequired,
 };
