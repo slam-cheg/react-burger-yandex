@@ -8,56 +8,35 @@ import { ModalIngredient } from "../modal/modal-ingredient/modal-ingredient";
 export const BurgerConstructor = ({ ingredients }) => {
     const [opened, setModal] = useState(false);
     const [currentIngredient, setIngredient] = useState();
+    const buns = [];
+    const midIngredients = [];
 
-    const orderList = ingredients.map((ingredient, index) => {
-        if (ingredient.type === "bun") {
-            if (index === 0) {
-                return (
-                    <li className={`${styles.ingredient} ml-4`} key={index}>
-                        <div className={`${styles.ingredientWrapper} pl-8 mb-4`}>
-                            <ConstructorElement type="top" isLocked={true} text={`${ingredient?.name} (верх)`} price={ingredient.price} thumbnail={ingredient.image_mobile} />
-                        </div>
-                    </li>
-                );
-            }
-            if (index === ingredients.length - 1) {
-                return (
-                    <li className={`${styles.ingredient} ml-4`} key={index}>
-                        <div className={`${styles.ingredientWrapper} pl-8`}>
-                            <ConstructorElement type="bottom" isLocked={true} text={`${ingredient?.name} (низ)`} price={ingredient.price} thumbnail={ingredient.image_mobile} />
-                        </div>
-                    </li>
-                );
-            }
-            return (
-                <li className={`${styles.ingredient} ml-4`} key={index}>
-                    <div className={`${styles.ingredientWrapper} pl-8 mb-4`}>
-                        <div className={`${styles.dragIco}`}>
-                            <DragIcon type="primary" />
-                        </div>
-                        <ConstructorElement text={ingredient?.name} price={ingredient.price} thumbnail={ingredient.image_mobile} />
-                    </div>
-                </li>
-            );
+    ingredients.forEach((item) => {
+        if (item.type !== "bun") {
+            midIngredients.push(item);
         } else {
-            return (
-                <li className={`${styles.ingredient} ml-4`} key={index}>
-                    <div className={`${styles.ingredientWrapper} pl-8 mb-4`}>
-                        <div className={`${styles.dragIco}`}>
-                            <DragIcon type="primary" />
-                        </div>
-                        <ConstructorElement text={ingredient?.name} price={ingredient.price} thumbnail={ingredient.image_mobile} />
-                    </div>
-                </li>
-            );
+            buns.push(item);
         }
     });
+
+    const topBottomIngredient = buns[0];
+
+    const midList = midIngredients.map((ingredient, _id) => (
+        <li className={`${styles.ingredient} ml-4`} key={_id} id={ingredient._id}>
+            <div className={`${styles.ingredientWrapper} pl-8 mb-4`}>
+                <div className={`${styles.dragIco}`}>
+                    <DragIcon type="primary" />
+                </div>
+                <ConstructorElement text={ingredient?.name} price={ingredient.price} thumbnail={ingredient.image_mobile} />
+            </div>
+        </li>
+    ));
 
     const openModal = (evt) => {
         const currentCard = evt.target.closest("li");
         const currentIngredient = ingredients.find((ingr) => ingr._id === currentCard.id);
         setIngredient(currentIngredient);
-        //        setModal(true);
+        setModal(true);
     };
 
     const closeModal = () => {
@@ -82,8 +61,19 @@ export const BurgerConstructor = ({ ingredients }) => {
         <>
             <section className={`${styles.burgerConstructor} pt-25 mb-10`}>
                 <ul className={`${styles.ingredients}`} onClick={openModal}>
-                    {orderList[0]}
-                    <div className={styles.ingredientsMiddle}></div>
+                    <li className={`${styles.ingredient} ml-4`} id={topBottomIngredient?._id}>
+                        <div className={`${styles.ingredientWrapper} pl-8 mb-4`}>
+                            <ConstructorElement type="top" isLocked={true} text={`${topBottomIngredient?.name} (верх)`} price={topBottomIngredient?.price} thumbnail={topBottomIngredient?.image_mobile} />
+                        </div>
+                    </li>
+
+                    <div className={`${styles.ingredientsMiddle} mb-4`}>{midList}</div>
+
+                    <li className={`${styles.ingredient} ml-4`} id={topBottomIngredient?._id}>
+                        <div className={`${styles.ingredientWrapper} pl-8`}>
+                            <ConstructorElement type="bottom" isLocked={true} text={`${topBottomIngredient?.name} (низ)`} price={topBottomIngredient?.price} thumbnail={topBottomIngredient?.image_mobile} />
+                        </div>
+                    </li>
                 </ul>
 
                 <div className={`${styles.order} mb-10 ml-4 mr-4`}>
@@ -91,7 +81,7 @@ export const BurgerConstructor = ({ ingredients }) => {
                         <span className="mr-2 text text_type_digits-medium">610</span>
                         <CurrencyIcon type="primary" />
                     </div>
-                    <div className={`${styles.buttonWrapper}`}>
+                    <div>
                         <Button type="primary" size="large">
                             Оформить заказ
                         </Button>
