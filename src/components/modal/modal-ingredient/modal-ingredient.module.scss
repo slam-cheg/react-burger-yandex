@@ -1,0 +1,25 @@
+.image {
+    width: calc(100% - 120px);
+    margin: 0 auto;
+}
+
+.infoBlock {
+    width: calc(100% - 120px);
+    margin: 0 auto;
+}
+
+.infoTitle {
+    text-align: center;
+}
+
+.values {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.pfc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
