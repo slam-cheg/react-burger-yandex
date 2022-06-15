@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styles from "./modal-ingredient.module.scss";
 
 export const ModalIngredient = (props) => {
-    console.log(props);
     if (props.info === undefined) {
         return null;
     } else {

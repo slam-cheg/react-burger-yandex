@@ -12,8 +12,10 @@ export const BurgerConstructor = ({ ingredients }) => {
     const [currentIngredient, setIngredient] = useState();
     const buns = [];
     const midIngredients = [];
+    let totalPriceCounter = 0;
 
     ingredients.forEach((item) => {
+        totalPriceCounter = totalPriceCounter + item.price;
         if (item.type !== "bun") {
             midIngredients.push(item);
         } else {
@@ -37,10 +39,8 @@ export const BurgerConstructor = ({ ingredients }) => {
     const openModal = (evt) => {
         const currentCard = evt.target.closest("li");
         if (currentCard === null) {
-            console.log("Open Order");
             setOrder(true);
         } else {
-            console.log("Open Ingr");
             const currentIngredient = ingredients.find((ingr) => ingr._id === currentCard.id);
             setIngredient(currentIngredient);
             setModal(true);
@@ -101,7 +101,7 @@ export const BurgerConstructor = ({ ingredients }) => {
 
                 <div className={`${styles.order} mb-10 ml-4 mr-4`}>
                     <div className={`${styles.total} mr-10`}>
-                        <span className="mr-2 text text_type_digits-medium">610</span>
+                        <span className="mr-2 text text_type_digits-medium">{totalPriceCounter}</span>
                         <CurrencyIcon type="primary" />
                     </div>
                     <div onClick={openModal}>
