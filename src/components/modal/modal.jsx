@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import styles from "./modal.module.scss";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
@@ -10,7 +11,7 @@ export const Modal = (props) => {
         };
     });
     return (
-        <div className={props.opened === props.state ? `${styles.overlay_deactive}` : `${styles.overlay}`} onClick={props.closeModalByOverlay}>
+        <div className={props.modalState === props.state ? `${styles.overlay_deactive}` : `${styles.overlay}`} onClick={props.closeModalByOverlay}>
             <div className={`${styles.contentBox} p-10`}>
                 <div className={`${styles.closeButton}`} onClick={props.closeModal}>
                     <CloseIcon type="primary" />
@@ -19,4 +20,14 @@ export const Modal = (props) => {
             </div>
         </div>
     );
+};
+
+Modal.propTypes = {
+    props: PropTypes.shape({
+        modalState: PropTypes.bool.isRequired,
+        children: PropTypes.object.isRequired,
+        closeModal: PropTypes.func.isRequired,
+        closeModalByOverlay: PropTypes.func.isRequired,
+        closeModalByEscape: PropTypes.func.isRequired,
+    }),
 };

@@ -4,9 +4,11 @@ import styles from "./burger-constructor.module.scss";
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Modal } from "../modal/modal";
 import { ModalIngredient } from "../modal/modal-ingredient/modal-ingredient";
+import { ModalOrder } from "../modal/modal-order/modal-order";
 
 export const BurgerConstructor = ({ ingredients }) => {
-    const [opened, setModal] = useState(false);
+    const [ingredientModalState, setModal] = useState(false);
+    const [orderModalState, setOrder] = useState(false);
     const [currentIngredient, setIngredient] = useState();
     const buns = [];
     const midIngredients = [];
@@ -34,25 +36,46 @@ export const BurgerConstructor = ({ ingredients }) => {
 
     const openModal = (evt) => {
         const currentCard = evt.target.closest("li");
-        const currentIngredient = ingredients.find((ingr) => ingr._id === currentCard.id);
-        setIngredient(currentIngredient);
-        setModal(true);
+        if (currentCard === null) {
+            console.log("Open Order");
+            setOrder(true);
+        } else {
+            console.log("Open Ingr");
+            const currentIngredient = ingredients.find((ingr) => ingr._id === currentCard.id);
+            setIngredient(currentIngredient);
+            setModal(true);
+        }
     };
 
     const closeModal = () => {
-        setModal(opened === false);
+        if (ingredientModalState) {
+            setModal(ingredientModalState === false);
+        }
+        if (orderModalState) {
+            setOrder(orderModalState === false);
+        }
     };
 
     const closeModalByEscape = (evt) => {
         if (evt.keyCode === 27) {
-            setModal(opened === false);
+            if (ingredientModalState) {
+                setModal(ingredientModalState === false);
+            }
+            if (orderModalState) {
+                setOrder(orderModalState === false);
+            }
         }
     };
 
     const closeModalByOverlay = (evt) => {
         if (evt.type === "click") {
             if (evt.target === evt.currentTarget) {
-                setModal(opened === false);
+                if (ingredientModalState) {
+                    setModal(ingredientModalState === false);
+                }
+                if (orderModalState) {
+                    setOrder(orderModalState === false);
+                }
             }
         }
     };
@@ -81,15 +104,20 @@ export const BurgerConstructor = ({ ingredients }) => {
                         <span className="mr-2 text text_type_digits-medium">610</span>
                         <CurrencyIcon type="primary" />
                     </div>
-                    <div>
+                    <div onClick={openModal}>
                         <Button type="primary" size="large">
                             Оформить заказ
                         </Button>
                     </div>
                 </div>
-                {opened === true && (
-                    <Modal opened={opened} closeModal={closeModal} closeModalByOverlay={closeModalByOverlay} closeModalByEscape={closeModalByEscape}>
+                {ingredientModalState === true && (
+                    <Modal modalState={ingredientModalState} closeModal={closeModal} closeModalByOverlay={closeModalByOverlay} closeModalByEscape={closeModalByEscape}>
                         <ModalIngredient info={currentIngredient} />
+                    </Modal>
+                )}
+                {orderModalState === true && (
+                    <Modal modalState={orderModalState} closeModal={closeModal} closeModalByOverlay={closeModalByOverlay} closeModalByEscape={closeModalByEscape}>
+                        <ModalOrder />
                     </Modal>
                 )}
             </section>

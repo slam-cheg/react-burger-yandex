@@ -7,7 +7,7 @@ import { Modal } from "../modal/modal";
 import { ModalIngredient } from "../modal/modal-ingredient/modal-ingredient";
 
 export const BurgerIngredients = ({ ingredients }) => {
-    const [opened, setModal] = useState(false);
+    const [ingredientModalState, setModal] = useState(false);
     const [currentIngredient, setIngredient] = useState();
 
     const buns = [];
@@ -34,19 +34,19 @@ export const BurgerIngredients = ({ ingredients }) => {
     };
 
     const closeModal = () => {
-        setModal(opened === false);
+        setModal(ingredientModalState === false);
     };
 
     const closeModalByEscape = (evt) => {
         if (evt.keyCode === 27) {
-            setModal(opened === false);
+            setModal(ingredientModalState === false);
         }
     };
 
     const closeModalByOverlay = (evt) => {
         if (evt.type === "click") {
             if (evt.target === evt.currentTarget) {
-                setModal(opened === false);
+                setModal(ingredientModalState === false);
             }
         }
     };
@@ -63,8 +63,8 @@ export const BurgerIngredients = ({ ingredients }) => {
                 <h2 className={`mb-6 text text_type_main-medium`}>Начинки</h2>
                 <IngredientCards arr={mainIngr} />
             </div>
-            {opened === true && (
-                <Modal opened={opened} closeModal={closeModal} closeModalByOverlay={closeModalByOverlay} closeModalByEscape={closeModalByEscape}>
+            {ingredientModalState === true && (
+                <Modal modalState={ingredientModalState} closeModal={closeModal} closeModalByOverlay={closeModalByOverlay} closeModalByEscape={closeModalByEscape}>
                     <ModalIngredient info={currentIngredient} />
                 </Modal>
             )}
@@ -73,5 +73,13 @@ export const BurgerIngredients = ({ ingredients }) => {
 };
 
 BurgerIngredients.propTypes = {
-    ingredients: PropTypes.array.isRequired,
+    ingredients: PropTypes.arrayOf(
+        PropTypes.shape({
+            _id: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+            image: PropTypes.string.isRequired,
+        })
+    ),
 };
