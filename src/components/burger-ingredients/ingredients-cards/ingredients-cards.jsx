@@ -5,7 +5,7 @@ import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-c
 
 export const IngredientCards = (props) => {
     const list = props.arr.map((ingredient, _id) => (
-        <li className={`${styles.ingredientCard} mb-10`} key={_id} id={ingredient._id}>
+        <li className={`${styles.ingredientCard} mb-10`} key={ingredient._id} id={ingredient._id}>
             <Counter count={1} size="default" />
             <img src={ingredient.image} alt="" className="ingredient-card__img ml-4 mr-4" />
             <div className={`${styles.priceWrapper} mt-1 mb-1`}>

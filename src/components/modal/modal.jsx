@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
+import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import styles from "./modal.module.scss";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+
+const modalRoot = document.querySelector("#modal-root");
 
 export const Modal = (props) => {
     useEffect(() => {
@@ -10,7 +13,7 @@ export const Modal = (props) => {
             window.removeEventListener("keyup", props.closeModalByEscape);
         };
     });
-    return (
+    return ReactDOM.createPortal(
         <div className={props.modalState === props.state ? `${styles.overlay_deactive}` : `${styles.overlay}`} onClick={props.closeModalByOverlay}>
             <div className={`${styles.contentBox} p-10`}>
                 <div className={`${styles.closeButton}`} onClick={props.closeModal}>
@@ -18,7 +21,8 @@ export const Modal = (props) => {
                 </div>
                 <div className={`${styles.content}`}>{props.children}</div>
             </div>
-        </div>
+        </div>,
+        modalRoot
     );
 };
 
