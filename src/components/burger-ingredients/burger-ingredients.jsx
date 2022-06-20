@@ -33,24 +33,6 @@ export const BurgerIngredients = ({ ingredients }) => {
         setModal(true);
     };
 
-    const closeModal = () => {
-        setModal(ingredientModalState === false);
-    };
-
-    const closeModalByEscape = (evt) => {
-        if (evt.keyCode === 27) {
-            setModal(ingredientModalState === false);
-        }
-    };
-
-    const closeModalByOverlay = (evt) => {
-        if (evt.type === "click") {
-            if (evt.target === evt.currentTarget) {
-                setModal(ingredientModalState === false);
-            }
-        }
-    };
-
     return (
         <section className={`${styles.burgerIngredients} pt-10 mb-10`}>
             <h1 className={`mb-5 text text_type_main-large`}>Соберите бургер</h1>
@@ -64,7 +46,7 @@ export const BurgerIngredients = ({ ingredients }) => {
                 <IngredientCards arr={mainIngr} />
             </div>
             {ingredientModalState === true && (
-                <Modal modalState={ingredientModalState} closeModal={closeModal} closeModalByOverlay={closeModalByOverlay} closeModalByEscape={closeModalByEscape}>
+                <Modal modalState={ingredientModalState} setModal={setModal}>
                     <ModalIngredient info={currentIngredient} />
                 </Modal>
             )}

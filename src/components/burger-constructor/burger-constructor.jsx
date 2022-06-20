@@ -6,7 +6,7 @@ import { Modal } from "../modal/modal";
 import { ModalOrder } from "../modal/modal-order/modal-order";
 
 export const BurgerConstructor = ({ ingredients }) => {
-    const [orderModalState, setOrder] = useState(false);
+    const [orderModalState, setModal] = useState(false);
     const buns = [];
     const midIngredients = [];
     let totalPriceCounter = 0;
@@ -36,25 +36,7 @@ export const BurgerConstructor = ({ ingredients }) => {
     const openModal = (evt) => {
         const currentCard = evt.target.closest("li");
         if (currentCard === null) {
-            setOrder(true);
-        }
-    };
-
-    const closeModal = () => {
-        setOrder(orderModalState === false);
-    };
-
-    const closeModalByEscape = (evt) => {
-        if (evt.keyCode === 27) {
-            setOrder(orderModalState === false);
-        }
-    };
-
-    const closeModalByOverlay = (evt) => {
-        if (evt.type === "click") {
-            if (evt.target === evt.currentTarget) {
-                setOrder(orderModalState === false);
-            }
+            setModal(true);
         }
     };
 
@@ -89,7 +71,7 @@ export const BurgerConstructor = ({ ingredients }) => {
                     </div>
                 </div>
                 {orderModalState === true && (
-                    <Modal modalState={orderModalState} closeModal={closeModal} closeModalByOverlay={closeModalByOverlay} closeModalByEscape={closeModalByEscape}>
+                    <Modal modalState={orderModalState} setModal={setModal}>
                         <ModalOrder />
                     </Modal>
                 )}
