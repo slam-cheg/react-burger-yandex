@@ -9,20 +9,20 @@ const modalRoot = document.querySelector("#modal-root");
 export const Modal = (props) => {
     const closeModalByEscape = (evt) => {
         if (evt.keyCode === 27) {
-            props.setModal(props.ingredientModalState === false);
+            closeModal();
         }
     };
 
     const closeModalByOverlay = (evt) => {
         if (evt.type === "click") {
             if (evt.target === evt.currentTarget) {
-                props.setModal(props.ingredientModalState === false);
+                closeModal();
             }
         }
     };
 
     const closeModal = () => {
-        props.setModal(props.ingredientModalState === false);
+        props.setModal(props.modalState === false);
     };
 
     useEffect(() => {
@@ -32,7 +32,7 @@ export const Modal = (props) => {
         };
     });
     return ReactDOM.createPortal(
-        <div className={props.modalState === props.state ? `${styles.overlay_deactive}` : `${styles.overlay}`} onClick={closeModalByOverlay}>
+        <div className={props.modalState ? `${styles.overlay}` : `${styles.overlay_deactive}`} onClick={closeModalByOverlay}>
             <div className={`${styles.contentBox} p-10`}>
                 <div className={`${styles.closeButton}`} onClick={closeModal}>
                     <CloseIcon type="primary" />
